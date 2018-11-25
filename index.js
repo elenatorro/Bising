@@ -1,24 +1,9 @@
-import './map.service.js';
-import mapService from './map.service.js';
-import markerService from './marker.service.js';
-import apiService from './api.service.js';
+import MapService from '/src/services/map.js';
+import LinesService from '/src/services/lines.js';
+import StationsService from '/src/services/stations.js';
 
 (async () => {
-  const map = mapService.initMap();
-  const stations = await apiService.getData();
-  _updateStations(map, stations);
-
-  map.addListener('bounds_changed', () => _updateStations(map, stations));
+  const lines = await LinesService.getGeoJSON();
+  const stations = await StationsService.getGeoJSON();
+  const map = MapService.initMap(lines, stations);
 })();
-
-
-function _updateStations(map, stations) {
-  for (const station of stations) {
-    const marker = markerService.generateMarker(station);
-    if (marker.visible && map.getBounds().contains(marker.getPosition())) {
-      !marker.getMap() && marker.setMap(map);
-    } else {
-      marker.setMap(null);
-    }
-  }
-}

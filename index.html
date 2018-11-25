@@ -6,14 +6,14 @@
   <meta name="viewport" content="initial-scale=1.0">
   <meta charset="utf-8">
   <meta name="description" content="Visor alternativo para bicing.cat">
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:site" content="@iagolast">
-  <meta property="og:url" content="https://iagolast.github.io/Bising">
-  <meta property="og:title" content="Bising">
-  <meta property="og:description" content="Visor alternativo para bicing.cat">
-  <meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Golden_boy_bike.svg/1597px-Golden_boy_bike.svg.png">
+  <link rel="stylesheet" href="https://libs.cartocdn.com/airship-style/v1.0.2/airship.css">
+  <script src="https://libs.cartocdn.com/airship-components/v1.0.2/airship.js"></script>
+  <script src="https://libs.cartocdn.com/carto-vl/v1.0.0/carto-vl.min.js"></script>
+  <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v0.50.0/mapbox-gl.js"></script>
+  <link href="https://api.tiles.mapbox.com/mapbox-gl-js/v0.50.0/mapbox-gl.css" rel="stylesheet" />
+
   <style>
-    *{
+    * {
       box-sizing: border-box;
     } 
     
@@ -24,49 +24,38 @@
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     }
 
-    header {
-      height: 72px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    header h1 { margin: 0} 
-    
-    header h1::first-letter{
-      color: #aa0518;
-      font-weight: bold;
-      font-size: 1.2em;
+    .as-toolbar {
+      --as-toolbar--background-color: #2d2d2d;
     }
     
     #map {
-      height: calc(100% - 108px);
+      position: absolute;
+      height: 100%;
+      width: 100%;
     }
 
-    footer {
-      height: 36px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+    .mapboxgl-popup-content {
+      min-width: 150px;
     }
-    
-    footer a {
-      color: #aa0518;
+
+    .mapboxgl-popup-content p {
+      margin: 2px 0;
     }
- 
   </style>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAtsP3m7SEyAhmPuFXvNe-nhvd_FZb08c8"></script>
+
   <script type="module" src="./index.js"></script>
 </head>
 
-<body>
-  <header>
-    <h1>Bising</h1>
+<body class="as-app-body as-app"></body>
+  <header class="as-toolbar">
+    <div class="as-toolbar__item as-title">Bising</div>
   </header>
-  <div id="map"></div>
-  <footer>
-    <p>Another <a href="https://iagolast.github.io">@IagoLast</a> pet project.</p>
-  </footer>
-</body>
 
+  <main class="as-main">
+    <div class="as-map-area">
+      <div id="map"></div>
+    </div>
+  </main>
+
+</body>
 </html>
